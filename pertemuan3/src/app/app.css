@@ -1,0 +1,242 @@
+/* =========================
+   GLOBAL
+========================= */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #f5f7fa;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+  max-width: 800px;
+  margin: 25px auto;
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   NgClass
+========================= */
+
+.active {
+  padding: 15px;
+  background-color: #fff59d;
+  color: #1565c0;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.inactive {
+  padding: 15px;
+  background-color: #e0e0e0;
+  color: #666;
+  border-radius: 8px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+  margin: 8px 5px 8px 0;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1976d2;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #125ca3;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+input {
+  padding: 9px 12px;
+  margin: 5px 0;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+
+/* =========================
+   NgModel
+========================= */
+
+label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.section p {
+  line-height: 1.6;
+}
+
+
+/* =========================
+   Custom Directive Highlight
+========================= */
+
+h2[appHighlight] {
+  max-width: 800px;
+  margin: 30px auto 10px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+
+/* =========================
+   Color Picker
+========================= */
+
+input[type="color"] {
+  width: 55px;
+  height: 38px;
+  padding: 3px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+
+/* =========================
+   Avatar / Custom Pipe
+========================= */
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+  margin: 25px auto;
+
+  border-radius: 50%;
+  background-color: #1976d2;
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+/* =========================
+   Custom Pipe Section
+========================= */
+
+section:not(.section) {
+  max-width: 800px;
+  margin: 25px auto;
+  padding: 25px;
+
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+section:not(.section) h3 {
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   Pipe Demo Items
+========================= */
+
+section:not(.section) > div {
+  margin-bottom: 20px;
+  padding: 18px;
+
+  background-color: #f8f9fa;
+  border-left: 4px solid #1976d2;
+  border-radius: 6px;
+}
+
+section:not(.section) > div:last-child {
+  margin-bottom: 0;
+}
+
+section:not(.section) p {
+  margin-bottom: 0;
+  padding: 10px;
+
+  background-color: #eef5ff;
+  border-radius: 5px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+  :host {
+    padding: 15px;
+  }
+
+  .section,
+  section:not(.section) {
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-right: 0;
+  }
+}

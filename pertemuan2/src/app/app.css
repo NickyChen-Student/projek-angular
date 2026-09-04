@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #222;
+}
+
+/* ================= HEADER ================= */
+
+.app-header {
+  background: linear-gradient(135deg, #111827, #374151);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: 3px;
+  transition: transform 0.3s ease;
+}
+
+.app-header h1:hover {
+  transform: scale(1.05);
+}
+
+.app-header p {
+  margin: 12px 0 0;
+  font-size: 17px;
+  color: #d1d5db;
+}
+
+/* ================= CONTENT ================= */
+
+.app-content {
+  max-width: 1200px;
+  margin: 45px auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* CARD MOBIL */
+
+.app-column {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* HOVER CARD */
+
+.app-column:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* IMAGE */
+
+.app-column img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+
+  transition: transform 0.4s ease;
+}
+
+.app-column:hover img {
+  transform: scale(1.03);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .app-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .app-header h1 {
+    font-size: 36px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 40px 15px;
+  }
+
+  .app-header h1 {
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+
+  .app-header p {
+    font-size: 14px;
+  }
+
+  .app-content {
+    grid-template-columns: 1fr;
+    margin: 30px auto;
+    padding: 0 15px;
+  }
+
+  .app-column {
+    padding: 20px;
+  }
+}
