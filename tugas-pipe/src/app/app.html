@@ -1,32 +1,99 @@
-<h1>Family Expense Tracker</h1>
+<div class="container">
+  <header class="header">
+    <h1>💰 Family Expense Tracker</h1>
+    <p class="subtitle">Catat dan pantau pengeluaran harianmu</p>
+  </header>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Activity</th>
-      <th>Category</th>
-      <th>Amount</th>
-    </tr>
-  </thead>
+  <!-- Summary Cards -->
+  <section class="summary-grid">
+    <div class="summary-card">
+      <span class="summary-label">Total Pengeluaran</span>
+      <span class="summary-value">{{ totalAmount | rupiah }}</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-label">Rata-rata Pengeluaran</span>
+      <span class="summary-value">{{ averageAmount | rupiah }}</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-label">Jumlah Transaksi</span>
+      <span class="summary-value">{{ expenses.length }}</span>
+    </div>
+  </section>
 
-  <tbody>
-    @for (item of expenses; track item.title) {
-      <tr>
-        <td>{{ item.title }}</td>
+  <!-- Form Tambah Pengeluaran -->
+  <section class="card form-card">
+    <h2>Tambah Pengeluaran</h2>
+    <form (ngSubmit)="addExpense()" class="expense-form">
+      <div class="form-group">
+        <label>Aktivitas</label>
+        <input
+          type="text"
+          [(ngModel)]="newExpense.title"
+          name="title"
+          placeholder="Contoh: Beli Kopi"
+          required
+        />
+      </div>
 
-        <td>
-          {{ item.category | category }}
-        </td>
+      <div class="form-group">
+        <label>Kategori</label>
+        <select [(ngModel)]="newExpense.category" name="category">
+          @for (cat of categories; track cat.value) {
+            <option [value]="cat.value">{{ cat.label }}</option>
+          }
+        </select>
+      </div>
 
-        <td [appAmountColor]="item.amount">
-          {{ item.amount | rupiah }}
-        </td>
-      </tr>
+      <div class="form-group">
+        <label>Jumlah (Rp)</label>
+        <input
+          type="number"
+          [(ngModel)]="newExpense.amount"
+          name="amount"
+          placeholder="0"
+          min="0"
+          required
+        />
+      </div>
 
-    } @empty {
-      <tr>
-        <td colspan="3">Belum ada data pengeluaran.</td>
-      </tr>
-    }
-  </tbody>
-</table>
+      <button type="submit" class="btn-primary">+ Tambah</button>
+    </form>
+  </section>
+
+  <!-- Tabel Pengeluaran -->
+  <section class="card table-card">
+    <h2>Daftar Pengeluaran</h2>
+    <table class="expense-table">
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th>Category</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of expenses; track item.title; let i = $index) {
+          <tr>
+            <td>{{ item.title }}</td>
+            <td>
+              <span class="badge" [class]="'badge-' + item.category">
+                {{ item.category | category }}
+              </span>
+            </td>
+            <td [appAmountColor]="item.amount">
+              {{ item.amount | rupiah }}
+            </td>
+            <td>
+              <button class="btn-delete" (click)="removeExpense(i)">🗑</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="empty-state">Belum ada data pengeluaran.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>
