@@ -1,0 +1,43 @@
+<h2>Building Dynamic Form</h2>
+
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <!-- Nama -->
+  <div>
+    <label for="name">Nama Mahasiswa:</label>
+
+    <input id="name" type="text" formControlName="name" placeholder="Masukkan nama" />
+
+    @if (studentForm.controls.name.touched && studentForm.controls.name.hasError('required')) {
+      <p>Nama wajib diisi.</p>
+    }
+  </div>
+
+  <br />
+
+  <!-- Skills -->
+  <div formArrayName="skills">
+    <h3>Skills</h3>
+
+    @for (skill of skills.controls; track $index) {
+      <div>
+        <label>Skill {{ $index + 1 }}:</label>
+
+        <input type="text" [formControlName]="$index" placeholder="Masukkan skill" />
+
+        <button type="button" (click)="removeSkill($index)">Hapus</button>
+
+        @if (skill.touched && skill.hasError('required')) {
+          <p>Skill wajib diisi.</p>
+        }
+      </div>
+
+      <br />
+    }
+
+    <button type="button" (click)="addSkill()">+ Tambah Skill</button>
+  </div>
+
+  <br />
+
+  <button type="submit">Submit</button>
+</form>

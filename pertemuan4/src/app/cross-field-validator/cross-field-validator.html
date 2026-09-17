@@ -1,0 +1,59 @@
+<h2>Cross-field Validator Form</h2>
+
+<form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
+  <!-- Password -->
+  <div>
+    <label for="password"> Password: </label>
+
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      placeholder="Masukkan password"
+    />
+
+    @if (
+      passwordForm.controls.password.touched && passwordForm.controls.password.hasError('required')
+    ) {
+      <p>Password wajib diisi.</p>
+    }
+
+    @if (
+      passwordForm.controls.password.touched && passwordForm.controls.password.hasError('minlength')
+    ) {
+      <p>Password minimal 6 karakter.</p>
+    }
+  </div>
+
+  <br />
+
+  <!-- Confirm Password -->
+  <div>
+    <label for="confirmPassword"> Confirm Password: </label>
+
+    <input
+      id="confirmPassword"
+      type="password"
+      formControlName="confirmPassword"
+      placeholder="Ulangi password"
+    />
+
+    @if (
+      passwordForm.controls.confirmPassword.touched &&
+      passwordForm.controls.confirmPassword.hasError('required')
+    ) {
+      <p>Confirm password wajib diisi.</p>
+    }
+  </div>
+
+  <br />
+
+  <!-- Cross-field error -->
+  @if (passwordForm.touched && passwordForm.hasError('passwordMismatch')) {
+    <p>Password dan Confirm Password harus sama.</p>
+  }
+
+  <br />
+
+  <button type="submit">Submit</button>
+</form>

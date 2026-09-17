@@ -1,0 +1,280 @@
+<div class="container mt-5 mb-5">
+  <div class="card shadow">
+    <div class="card-body p-4">
+      <h2 class="text-center mb-4">Registration Form</h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- First Name -->
+        <div class="mb-3">
+          <label class="form-label">First Name</label>
+
+          <input type="text" class="form-control" formControlName="firstName" />
+
+          @if (registerForm.controls.firstName.invalid && registerForm.controls.firstName.touched) {
+            <div class="alert alert-danger mt-2">First Name wajib diisi.</div>
+          }
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+          <label class="form-label">Last Name</label>
+
+          <input type="text" class="form-control" formControlName="lastName" />
+
+          @if (registerForm.controls.lastName.invalid && registerForm.controls.lastName.touched) {
+            <div class="alert alert-danger mt-2">Last Name wajib diisi.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+
+          <input type="email" class="form-control" formControlName="email" />
+
+          @if (registerForm.controls.email.invalid && registerForm.controls.email.touched) {
+            <div class="alert alert-danger mt-2">
+              @if (registerForm.controls.email.hasError('required')) {
+                Email wajib diisi.
+              }
+
+              @if (registerForm.controls.email.hasError('email')) {
+                Format email tidak valid.
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+
+          <textarea class="form-control" rows="3" formControlName="address"></textarea>
+
+          @if (registerForm.controls.address.invalid && registerForm.controls.address.touched) {
+            <div class="alert alert-danger mt-2">Address wajib diisi.</div>
+          }
+        </div>
+
+        <!-- RT & RW -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">RT</label>
+
+            <input type="number" class="form-control" formControlName="rt" />
+
+            @if (registerForm.controls.rt.invalid && registerForm.controls.rt.touched) {
+              <div class="alert alert-danger mt-2">RT wajib diisi dan harus berupa angka.</div>
+            }
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">RW</label>
+
+            <input type="number" class="form-control" formControlName="rw" />
+
+            @if (registerForm.controls.rw.invalid && registerForm.controls.rw.touched) {
+              <div class="alert alert-danger mt-2">RW wajib diisi dan harus berupa angka.</div>
+            }
+          </div>
+        </div>
+
+        <!-- Kecamatan -->
+        <div class="mb-3">
+          <label class="form-label">Kecamatan</label>
+
+          <select class="form-select" formControlName="kecamatan">
+            <option value="">Pilih Kecamatan</option>
+            <option value="Batam Kota">Batam Kota</option>
+            <option value="Batu Aji">Batu Aji</option>
+            <option value="Bengkong">Bengkong</option>
+            <option value="Sekupang">Sekupang</option>
+          </select>
+
+          @if (registerForm.controls.kecamatan.invalid && registerForm.controls.kecamatan.touched) {
+            <div class="alert alert-danger mt-2">Kecamatan wajib dipilih.</div>
+          }
+        </div>
+
+        <!-- Kelurahan -->
+        <div class="mb-3">
+          <label class="form-label">Kelurahan</label>
+
+          <select class="form-select" formControlName="kelurahan">
+            <option value="">Pilih Kelurahan</option>
+            <option value="Baloi Permai">Baloi Permai</option>
+            <option value="Teluk Tering">Teluk Tering</option>
+            <option value="Taman Baloi">Taman Baloi</option>
+            <option value="Sukajadi">Sukajadi</option>
+          </select>
+
+          @if (registerForm.controls.kelurahan.invalid && registerForm.controls.kelurahan.touched) {
+            <div class="alert alert-danger mt-2">Kelurahan wajib dipilih.</div>
+          }
+        </div>
+
+        <!-- Gender -->
+        <div class="mb-3">
+          <label class="form-label d-block"> Gender </label>
+
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Laki-laki"
+              formControlName="gender"
+            />
+
+            <label class="form-check-label"> Laki-laki </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Perempuan"
+              formControlName="gender"
+            />
+
+            <label class="form-check-label"> Perempuan </label>
+          </div>
+
+          @if (registerForm.controls.gender.invalid && registerForm.controls.gender.touched) {
+            <div class="alert alert-danger mt-2">Gender wajib dipilih.</div>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+
+          <input type="password" class="form-control" formControlName="password" />
+          @if (registerForm.controls.password.invalid && registerForm.controls.password.touched) {
+            <div class="alert alert-danger mt-2">
+              @if (registerForm.controls.password.hasError('required')) {
+                Password wajib diisi.
+              }
+
+              @if (registerForm.controls.password.hasError('minlength')) {
+                Password minimal 6 karakter.
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Password Confirmation -->
+        <div class="mb-3">
+          <label class="form-label"> Password Confirmation </label>
+
+          <input type="password" class="form-control" formControlName="passwordConfirmation" />
+          @if (
+            registerForm.controls.passwordConfirmation.invalid &&
+            registerForm.controls.passwordConfirmation.touched
+          ) {
+            <div class="alert alert-danger mt-2">Password Confirmation wajib diisi.</div>
+          }
+
+          @if (
+            registerForm.hasError('passwordMismatch') &&
+            registerForm.controls.passwordConfirmation.touched
+          ) {
+            <div class="alert alert-danger mt-2">
+              Password dan Password Confirmation tidak sama.
+            </div>
+          }
+        </div>
+
+        <!-- Reason Join -->
+        <div class="mb-3">
+          <label class="form-label"> Reason Join </label>
+
+          <textarea class="form-control" rows="4" formControlName="reasonJoin"></textarea>
+          @if (
+            registerForm.controls.reasonJoin.invalid && registerForm.controls.reasonJoin.touched
+          ) {
+            <div class="alert alert-danger mt-2">Reason Join wajib diisi.</div>
+          }
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <button type="button" class="btn btn-secondary" (click)="onReset()">Reset</button>
+        </div>
+      </form>
+      @if (submittedData) {
+        <div class="card shadow mt-5">
+          <div class="card-body">
+            <h3 class="mb-4">Data Registrasi</h3>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Name</div>
+
+              <div class="col-md-8">
+                {{ submittedData.firstName }}
+                {{ submittedData.lastName }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Email</div>
+
+              <div class="col-md-8">
+                {{ submittedData.email }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Address</div>
+
+              <div class="col-md-8">
+                {{ submittedData.address }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">RT / RW</div>
+
+              <div class="col-md-8">
+                {{ submittedData.rt }} /
+                {{ submittedData.rw }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Kecamatan</div>
+
+              <div class="col-md-8">
+                {{ submittedData.kecamatan }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Kelurahan</div>
+
+              <div class="col-md-8">
+                {{ submittedData.kelurahan }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Gender</div>
+
+              <div class="col-md-8">
+                {{ submittedData.gender }}
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-4 fw-bold">Reason Join</div>
+
+              <div class="col-md-8">
+                {{ submittedData.reasonJoin }}
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

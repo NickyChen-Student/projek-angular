@@ -1,0 +1,60 @@
+<h2>Validate Form</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <!-- Name -->
+  <div>
+    <label for="name">Nama:</label>
+
+    <input id="name" type="text" formControlName="name" placeholder="Masukkan nama" />
+
+    @if (userForm.controls.name.touched && userForm.controls.name.hasError('required')) {
+      <p>Nama wajib diisi.</p>
+    }
+
+    @if (userForm.controls.name.touched && userForm.controls.name.hasError('minlength')) {
+      <p>Nama minimal 3 karakter.</p>
+    }
+  </div>
+
+  <br />
+
+  <!-- Email -->
+  <div>
+    <label for="email">Email:</label>
+
+    <input id="email" type="email" formControlName="email" placeholder="Masukkan email" />
+
+    @if (userForm.controls.email.touched && userForm.controls.email.hasError('required')) {
+      <p>Email wajib diisi.</p>
+    }
+
+    @if (userForm.controls.email.touched && userForm.controls.email.hasError('email')) {
+      <p>Format email tidak valid.</p>
+    }
+  </div>
+
+  <br />
+
+  <!-- Age -->
+  <div>
+    <label for="age">Umur:</label>
+
+    <input id="age" type="number" formControlName="age" placeholder="Masukkan umur" />
+
+    @if (userForm.controls.age.touched && userForm.controls.age.hasError('required')) {
+      <p>Umur wajib diisi.</p>
+    }
+
+    @if (userForm.controls.age.touched && userForm.controls.age.hasError('min')) {
+      <p>Umur minimal 17 tahun.</p>
+    }
+
+    @if (userForm.controls.age.touched && userForm.controls.age.hasError('max')) {
+      <p>Umur maksimal 60 tahun.</p>
+    }
+  </div>
+
+  <br />
+
+  <button type="submit">Submit</button>
+</form>
