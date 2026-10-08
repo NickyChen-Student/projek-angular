@@ -1,0 +1,26 @@
+<section class="page">
+  <h1>Ringkasan Penjualan</h1>
+  <p>Performa penjualan jam tangan periode September 2026.</p>
+
+  <div class="kpi-grid">
+    @for (item of kpi; track item.label) {
+      <div class="kpi">
+        <div class="label">{{ item.label }}</div>
+        <div class="value">{{ item.value }}</div>
+        <div class="trend">{{ item.trend }} vs bulan lalu</div>
+      </div>
+    }
+  </div>
+
+  <h2 class="section-title">Produk Terlaris</h2>
+  <ul class="ranking">
+    @for (item of terlaris; track item.model; let i = $index) {
+      <li>
+        <span class="rank">{{ i + 1 }}</span>
+        <span class="name">{{ item.model }}</span>
+        <span class="brand">{{ item.brand }}</span>
+        <span class="unit">{{ item.unit }} unit</span>
+      </li>
+    }
+  </ul>
+</section>

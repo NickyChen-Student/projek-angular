@@ -1,0 +1,33 @@
+<section class="page">
+  <h1>Riwayat Transaksi</h1>
+  <p>Daftar transaksi penjualan jam tangan terbaru.</p>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Pelanggan</th>
+          <th>Produk</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of transaksi; track item.pelanggan + item.produk) {
+          <tr>
+            <td class="nowrap">{{ item.tanggal }}</td>
+            <td class="nowrap">{{ item.pelanggan }}</td>
+            <td class="produk">{{ item.produk }}</td>
+            <td>{{ item.qty }}</td>
+            <td class="nowrap">{{ rupiah(item.total) }}</td>
+            <td>
+              <span [class]="badgeClass(item.status)">{{ item.status }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

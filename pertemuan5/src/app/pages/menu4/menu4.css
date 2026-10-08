@@ -1,0 +1,20 @@
+.empty {
+  margin-top: 1.5rem;
+  padding: 3rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.85rem;
+  background: var(--surface-soft);
+  text-align: center;
+  color: var(--muted);
+}
+
+.split {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.split-item {
+  flex: 1;
+  min-width: 0;
+}

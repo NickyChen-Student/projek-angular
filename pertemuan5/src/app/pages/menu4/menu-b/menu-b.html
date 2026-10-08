@@ -1,0 +1,16 @@
+<div class="panel">
+  <h2>Bagian B &middot; Stok Menipis</h2>
+  <p>Produk yang perlu segera restock.</p>
+
+  <ul class="restock">
+    @for (item of stokMenipis; track item.model) {
+      <li>
+        <div>
+          <div class="model">{{ item.model }}</div>
+          <div class="brand">{{ item.brand }}</div>
+        </div>
+        <span [class]="badgeClass(item.sisa)">{{ label(item.sisa) }}</span>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,33 @@
+<section class="page">
+  <h1>Daftar Produk</h1>
+  <p>Katalog jam tangan dan ketersediaan stok.</p>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Model</th>
+          <th>Brand</th>
+          <th>Harga</th>
+          <th>Stok</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of produk; track item.model; let i = $index) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td class="model">{{ item.model }}</td>
+            <td>{{ item.brand }}</td>
+            <td>{{ rupiah(item.harga) }}</td>
+            <td>{{ item.stok }}</td>
+            <td>
+              <span [class]="badgeClass(item.stok)">{{ status(item.stok) }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

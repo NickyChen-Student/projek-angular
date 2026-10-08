@@ -1,0 +1,22 @@
+<section class="page">
+  <h1>Menu 4</h1>
+
+  @if (hasContent()) {
+    <p>Bagian yang sudah dibuka ditampilkan berdampingan.</p>
+    <div class="split">
+      @if (showA()) {
+        <div class="split-item">
+          <app-menu-a />
+        </div>
+      }
+      @if (showB()) {
+        <div class="split-item">
+          <app-menu-b />
+        </div>
+      }
+    </div>
+  } @else {
+    <p>Halaman masih kosong. Pilih sub-menu A atau B pada sidebar.</p>
+    <div class="empty">Belum ada bagian yang dibuka.</div>
+  }
+</section>

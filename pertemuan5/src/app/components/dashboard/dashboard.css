@@ -1,0 +1,11 @@
+:host {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  background: radial-gradient(900px 500px at 100% 0%, #e0e7ff 0%, transparent 60%),
+    var(--bg);
+}
+
+.dashboard {
+  padding: 2.5rem 3rem;
+}

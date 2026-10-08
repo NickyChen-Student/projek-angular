@@ -1,0 +1,20 @@
+<header class="topbar">
+  <a class="brand" routerLink="/telephone" aria-label="Telephone Desk home">
+    <span class="brand-mark" aria-hidden="true">T</span>
+    <span>Telephone Desk<small>API learning workspace</small></span>
+  </a>
+  <nav aria-label="Main navigation">
+    <a
+      routerLink="/telephone"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Telephone CRUD
+    </a>
+    <a routerLink="/todos" routerLinkActive="active">Todos API</a>
+  </nav>
+</header>
+
+<main class="page-shell">
+  <router-outlet />
+</main>

@@ -1,0 +1,153 @@
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">CONTACT DIRECTORY</p>
+    <h1>Telephone Management</h1>
+    <p class="intro">Kelola data Telephone yang tersimpan pada ASP.NET Core API.</p>
+  </div>
+  <button
+    class="secondary-button refresh-button"
+    type="button"
+    (click)="loadData()"
+    [disabled]="loading"
+  >
+    {{ loading ? 'Memuat...' : 'Muat ulang' }}
+  </button>
+</section>
+
+<p class="notice success" role="status" *ngIf="message">{{ message }}</p>
+<p class="notice error" role="alert" *ngIf="error">{{ error }}</p>
+
+<section class="form-panel" aria-labelledby="form-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">{{ editingId === null ? 'CREATE RECORD' : 'UPDATE RECORD' }}</p>
+      <h2 id="form-title">{{ editingId === null ? 'Tambah Telephone' : 'Edit Telephone' }}</h2>
+    </div>
+    <span class="record-id" *ngIf="editingId !== null">ID {{ editingId }}</span>
+  </div>
+
+  <form #telephoneForm="ngForm" (ngSubmit)="save()">
+    <div class="form-grid">
+      <label>
+        Nama pengguna
+        <input name="nama_user" [(ngModel)]="telephone.nama_user" required maxlength="120" />
+      </label>
+      <label>
+        Nomor Telephone
+        <input name="no_telp" [(ngModel)]="telephone.no_telp" required type="tel" maxlength="30" />
+      </label>
+      <label class="wide-field">
+        Alamat
+        <input name="alamat" [(ngModel)]="telephone.alamat" required maxlength="250" />
+      </label>
+      <label>
+        Kode pos
+        <input name="kode_post" [(ngModel)]="telephone.kode_post" required maxlength="20" />
+      </label>
+      <label>
+        Tanggal dan waktu
+        <input name="date_time" [(ngModel)]="telephone.date_time" type="datetime-local" />
+      </label>
+    </div>
+    <div class="form-actions">
+      <button type="submit" [disabled]="telephoneForm.invalid || saving">
+        {{ saving ? 'Menyimpan...' : editingId === null ? 'Tambah Telephone' : 'Simpan perubahan' }}
+      </button>
+      <button
+        class="secondary-button"
+        *ngIf="editingId !== null"
+        type="button"
+        (click)="cancelEdit()"
+      >
+        Batal
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="table-section" aria-labelledby="list-title">
+  <div class="section-heading list-heading">
+    <div>
+      <p class="eyebrow">API RECORDS</p>
+      <h2 id="list-title">Daftar Telephone</h2>
+    </div>
+    <span class="count-label">{{ telephones.length }} data</span>
+  </div>
+
+  <p class="loading-state" *ngIf="loading">Mengambil data dari Telephone API...</p>
+  <div class="table-wrap" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama pengguna</th>
+          <th>Nomor Telephone</th>
+          <th>Alamat</th>
+          <th>Kode pos</th>
+          <th>Tanggal / waktu</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of telephones">
+          <td>{{ item.id }}</td>
+          <td class="name-cell">{{ item.nama_user }}</td>
+          <td>{{ item.no_telp }}</td>
+          <td>{{ item.alamat }}</td>
+          <td>{{ item.kode_post }}</td>
+          <td>{{ item.date_time || '—' }}</td>
+          <td>
+            <div class="row-actions">
+              <button
+                class="text-button"
+                type="button"
+                (click)="loadById(item.id)"
+                [disabled]="detailLoadingId === item.id"
+              >
+                {{ detailLoadingId === item.id ? '...' : 'Detail' }}
+              </button>
+              <button class="text-button" type="button" (click)="edit(item)">Edit</button>
+              <button class="text-button danger-button" type="button" (click)="remove(item)">
+                Hapus
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="telephones.length === 0">
+          <td class="empty-state" colspan="7">Belum ada data Telephone dari API.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <aside class="detail-panel" *ngIf="detailTelephone || detailError" aria-live="polite">
+    <p class="eyebrow">GET BY ID</p>
+    <p class="notice error" role="alert" *ngIf="detailError">{{ detailError }}</p>
+    <dl *ngIf="detailTelephone">
+      <div>
+        <dt>ID</dt>
+        <dd>{{ detailTelephone.id }}</dd>
+      </div>
+      <div>
+        <dt>Nama pengguna</dt>
+        <dd>{{ detailTelephone.nama_user }}</dd>
+      </div>
+      <div>
+        <dt>Nomor</dt>
+        <dd>{{ detailTelephone.no_telp }}</dd>
+      </div>
+      <div>
+        <dt>Alamat</dt>
+        <dd>{{ detailTelephone.alamat }}</dd>
+      </div>
+      <div>
+        <dt>Kode pos</dt>
+        <dd>{{ detailTelephone.kode_post }}</dd>
+      </div>
+      <div>
+        <dt>Tanggal / waktu</dt>
+        <dd>{{ detailTelephone.date_time || '—' }}</dd>
+      </div>
+    </dl>
+  </aside>
+</section>

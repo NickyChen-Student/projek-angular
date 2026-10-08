@@ -1,0 +1,47 @@
+<div class="brand">Angular App</div>
+
+<nav class="nav">
+  @for (menu of menus; track menu.path) {
+    <a class="menu-item" [routerLink]="menu.path" routerLinkActive="active">
+      <span class="dot"></span>
+      {{ menu.label }}
+    </a>
+  }
+
+  <button
+    type="button"
+    class="menu-item"
+    [class.active]="menu4Active()"
+    [class.open]="openMenu4()"
+    (click)="toggleMenu4()"
+  >
+    <span class="dot"></span>
+    Menu 4
+    <svg
+      class="chevron"
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
+
+  <div class="submenu" [class.open]="openMenu4()">
+    @for (sub of subMenus; track sub.path) {
+      <a
+        class="menu-item"
+        [routerLink]="sub.path"
+        routerLinkActive="active"
+        (click)="selectSection(sub.id)"
+      >
+        {{ sub.label }}
+      </a>
+    }
+  </div>
+</nav>

@@ -1,0 +1,51 @@
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">PUBLIC REST API</p>
+    <h1>Todos API</h1>
+    <p class="intro">Daftar tugas yang dimuat langsung dari JSONPlaceholder.</p>
+  </div>
+  <button class="secondary-button" type="button" (click)="loadTodos()" [disabled]="loading">
+    {{ loading ? 'Memuat...' : 'Muat ulang' }}
+  </button>
+</section>
+
+<p class="notice error" role="alert" *ngIf="error">{{ error }}</p>
+
+<section class="table-section" aria-labelledby="todos-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">GET /TODOS/</p>
+      <h2 id="todos-title">Daftar tugas</h2>
+    </div>
+    <span class="count-label">{{ todos.length }} data</span>
+  </div>
+
+  <p class="loading-state" *ngIf="loading">Mengambil data dari JSONPlaceholder...</p>
+  <div class="table-wrap" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <td>{{ todo.userId }}</td>
+          <td>{{ todo.id }}</td>
+          <td class="title-cell">{{ todo.title }}</td>
+          <td>
+            <span class="status" [class.done]="todo.completed" [class.pending]="!todo.completed">
+              {{ todo.completed ? 'Completed' : 'Not Completed' }}
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="todos.length === 0 && !error">
+          <td class="empty-state" colspan="4">Tidak ada data Todo yang diterima.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

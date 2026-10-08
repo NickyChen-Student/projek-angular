@@ -1,0 +1,18 @@
+<div class="panel">
+  <h2>Bagian A &middot; Penjualan per Brand</h2>
+  <p>Jumlah unit terjual tiap brand bulan ini.</p>
+
+  <div class="bars">
+    @for (item of penjualan; track item.brand) {
+      <div class="bar-row">
+        <div class="bar-head">
+          <span>{{ item.brand }}</span>
+          <span>{{ item.unit }} unit</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" [style.width.%]="width(item.unit)"></div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

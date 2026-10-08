@@ -1,0 +1,11 @@
+.table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+}
+
+.model {
+  font-weight: 600;
+  white-space: nowrap;
+}
